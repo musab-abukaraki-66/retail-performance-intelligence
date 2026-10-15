@@ -13,6 +13,8 @@ Usage:
 
 from __future__ import annotations
 
+import os
+
 import numpy as np
 import pandas as pd
 
@@ -121,6 +123,7 @@ def generate() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
 
 def main() -> None:
     customers, products_df, orders = generate()
+    os.makedirs("data", exist_ok=True)  # data/ is git-ignored, so a fresh clone lacks it
     customers.to_csv("data/customers.csv", index=False)
     products_df.to_csv("data/products.csv", index=False)
     orders.to_csv("data/orders.csv", index=False)
